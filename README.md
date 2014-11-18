@@ -6,6 +6,7 @@ jQuery plug-in to apply class and style in DOM
 Demo
 ====
 
+[demo](http://fintopo.github.io/applyStyles/)
 
 Usage
 =====
