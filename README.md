@@ -3,6 +3,71 @@ applyStyles
 
 jQuery plug-in to apply class and style in DOM
 
+Sample
+======
+
+## Before
+
+```
+<div id="demo">
+  <img src="picture.jpg" class="picture">
+  <div class="body">
+    <div class="header">
+      header
+    </div>
+    <div class="memo">
+      memo
+    </div>
+  </div>
+</div>
+```
+
+## Do
+
+```
+$('#demo').applyStyles({
+  classes: ['media', 'clearfix']
+  ,sections: [{
+    'name': '.picture'
+    ,'classes': ['pull-right']
+    ,'styles': {
+      'width': '200px'
+    }
+  },{
+    'name': '.body'
+    ,'classes': ['media-body']
+    ,'styles': {
+      'width': '500px'
+    }
+    ,'sections': [{
+      'name': '.header'
+      ,'classes': ['media-heading', 'h4']
+      ,'styles': {
+        'color': 'white'
+        ,'background-color': 'rgb(103, 88, 195)'
+        ,'width': '100%'
+      }
+    }]
+  }]
+});
+```
+
+## After
+
+```
+<div id="demo" class="media clearfix">
+  <img src="picture.jpg" class="picture pull-right" style="width: 200px;">
+	<div class="body media-body" style="width: 500px;">
+	  <div class="header media-heading h4" style="color: white; width: 100%; background-color: rgb(103, 88, 195);">
+		  header
+    </div>
+    <div class="memo">
+      memo
+    </div>
+  </div>
+</div>
+```
+
 Demo
 ====
 
