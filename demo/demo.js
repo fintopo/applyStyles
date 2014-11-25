@@ -24,4 +24,22 @@ $(function() {
       }]
     }]
   });
+
+	$('#demo2').applyStyles({
+    'classes': ['media', 'clearfix']
+    ,'css': '.picture {'
+            + '  -as-classes: pull-right;'
+            + '  width: 200px;'
+            + '}'
+            + '.body {'
+            + '  -as-classes: media-body;'
+            + '  width: 500px;'
+            + '}'
+            + '.header {'
+            + '  -as-classes: media-heading h4;'
+            + '  color: white;'
+            + '  background-color: rgb(103, 88, 195);'
+            + '  width: 100%;'
+            + '}'
+  });
 });

@@ -5,6 +5,8 @@
  */
 
 (function($) {
+  'use strict';
+
   var namespace = 'applyStyles';
   var methods = {
     init: function(options){
@@ -13,6 +15,10 @@
         ,styles: null
         ,sections: null
       }, options);
+      if (options.css) {
+        var parsed = methods.parse.call(this, options);
+        options.sections = [].concat(options.sections || [], parsed);
+      }
       //
       var apply_styles = function($this, section){
         if (!$this) return;
@@ -36,6 +42,29 @@
       return this.each(function(){
         apply_styles($(this), options);
       }); // end each
+    }
+    ,parse: function(options){
+      if ($.type(options.css) == 'string') {
+        return $.map(options.css.match(/(.+?\{.*?\})+?/mg), function(section, index){
+          var params = section.match(/(.+?)\{(.*;)*?\}/m);
+          var classes = [];
+          var styles = {};
+          $.each(params[2].match(/(.+?:.+?;)+?/mg), function(index, param){
+            var params = param.match(/(.+)?:(.+)?;/m);
+            var name = params[1].trim();
+            if (name == '-as-classes') {
+              classes.push(params[2].trim());
+            } else {
+              styles[name] = params[2].trim();
+            }
+          });
+          return {
+            'name': params[1].trim()
+            ,'classes': classes
+            ,'styles': styles
+          };
+        });
+      }
     }
   };
   $.fn.applyStyles = function(method){

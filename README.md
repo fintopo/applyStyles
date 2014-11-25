@@ -112,6 +112,19 @@ array of option to apply to subdom.
 
 Name parameter is the selector when find for subdom.
 
+## css
+
+string of css format, to expand in parse method, to be added to the sections.
+
+The value of a special property '-as-classes' append to the classes of sections.
+
+Methods
+=======
+
+## parse
+
+convert a string of css format to sections object.
+
 
 License
 =======
