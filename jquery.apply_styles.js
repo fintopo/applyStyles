@@ -23,9 +23,11 @@
       var apply_styles = function($this, section){
         if (!$this) return;
         if (section.classes) {
-          $.each(section.classes, function(index, add_class){
-            $this.addClass(add_class);
-          });
+          var classes = section.classes;
+          if ($.type(classes) != 'string') {
+            classes = section.classes.join(' ');
+          }
+          $this.addClass(classes);
         }
         if (section.styles) {
           $this.css(section.styles);

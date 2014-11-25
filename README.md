@@ -98,7 +98,7 @@ Options
 
 ## classes
 
-array of class to be applied.
+string or array of class to be applied.
 
 ## styles
 
