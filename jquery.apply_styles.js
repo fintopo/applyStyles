@@ -28,9 +28,7 @@
           });
         }
         if (section.styles) {
-          $.each(section.styles, function(key, value){
-            $this.css(key, value);
-          });
+          $this.css(section.styles);
         }
         if (section.sections) {
           $.each(section.sections, function(index, section){
