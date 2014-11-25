@@ -1,5 +1,5 @@
 /*
- * applyStyles Ver.1.0.0(2014/11/18)
+ * applyStyles Ver.1.1.0(2014/11/25)
  * 
  * by fintopo(http://www.fintopo.jp/)
  */
