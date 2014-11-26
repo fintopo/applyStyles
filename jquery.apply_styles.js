@@ -1,5 +1,5 @@
 /*
- * applyStyles Ver.1.1.0(2014/11/25)
+ * applyStyles Ver.1.1.1(2014/11/26)
  * 
  * by fintopo(http://www.fintopo.jp/)
  */
@@ -44,27 +44,35 @@
       }); // end each
     }
     ,parse: function(options){
-      if ($.type(options.css) == 'string') {
-        return $.map(options.css.match(/(.+?\{.*?\})+?/mg), function(section, index){
-          var params = section.match(/(.+?)\{(.*;)*?\}/m);
-          var classes = [];
-          var styles = {};
-          $.each(params[2].match(/(.+?:.+?;)+?/mg), function(index, param){
-            var params = param.match(/(.+)?:(.+)?;/m);
-            var name = params[1].trim();
-            if (name == '-as-classes') {
-              classes.push(params[2].trim());
-            } else {
-              styles[name] = params[2].trim();
-            }
-          });
-          return {
-            'name': params[1].trim()
-            ,'classes': classes
-            ,'styles': styles
-          };
+      if ($.type(options.css) != 'string') return;
+      var params = options.css.replace(/[\n\r]/g,'').match(/(.+?\{.*?\})+?/mg);
+      if (!params) return;
+      var ret = $.map(params, function(section, index){
+        var params = section.match(/(.+?)\{(.*?)\}/m);
+        if (!params) return null;
+        var name = params[1].trim();
+        var value = params[2].trim();
+        var classes = [];
+        var styles = {};
+        var values = value.match(/(.+?:.+?;)+?/mg);
+        if (!values) return null;
+        $.each(values, function(index, param){
+          var params = param.match(/(.+)?:(.+)?;/m);
+          var name = params[1].trim();
+          var value = params[2].trim();
+          if (name == '-as-classes') {
+            classes.push(value);
+          } else {
+            styles[name] = value;
+          }
         });
-      }
+        return {
+          'name': name
+          ,'classes': classes
+          ,'styles': styles
+        };
+      });
+      return ret;
     }
   };
   $.fn.applyStyles = function(method){

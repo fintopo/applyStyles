@@ -129,6 +129,8 @@ applyStyles is released under the MIT license.
 Change Log
 ==========
 
+- Ver.1.1.1 (2014/11/26)
+ - modified the parse method.
 - Ver.1.1.0 (2014/11/25)
  - Added the option 'css'.
  - The option 'classes' to use string from array.
