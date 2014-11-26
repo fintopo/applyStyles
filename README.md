@@ -1,7 +1,9 @@
 applyStyles
 ===========
 
-jQuery plug-in to apply class and style in DOM
+jQuery plug-in to apply class and style in DOM.
+
+Import a local class of css.
 
 Sample
 ======
@@ -62,6 +64,23 @@ $('#demo').applyStyles({
   </div>
 </div>
 ```
+
+## Use to Backbone.View
+
+define a valid style in the view.
+
+```
+var view = Marionette.ItemView.extend({
+  styles: {
+    ...
+  }
+  ,onRender: function(){
+    this.$el.applyStyles(this.styles);
+  }
+});
+```
+
+
 
 Demo
 ====
